@@ -9,4 +9,4 @@
   :profiles {:uberjar {:aot :all}
              :dev     {:plugins      [[lein-midje "3.1.3"] [lein-cloverage "1.0.9"]]
                        :dependencies [[midje "1.6.3"]]}}
-  ) 
+  )
