@@ -11,8 +11,5 @@
     head
     ((keyword to) ((keyword head) compass))))
 
-(defn move-rover [initial-position commands]
-    (let [x (:x initial-position)
-          y (:y initial-position)
-          heading (:heading initial-position)]
-      {:x x :y y :heading (get-head heading commands)}))
+(defn move-rover [{x :x y :y current-head :heading} commands]
+  {:x x :y y :heading (get-head current-head commands)})
