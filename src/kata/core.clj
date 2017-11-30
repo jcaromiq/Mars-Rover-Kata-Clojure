@@ -12,4 +12,4 @@
     ((keyword to) ((keyword head) compass))))
 
 (defn move-rover [{x :x y :y current-head :heading} commands]
-  {:x x :y y :heading (get-head current-head commands)})
+  {:x x :y y :heading (reduce get-head current-head (map str commands))})

@@ -21,8 +21,9 @@
   (fact "South"
         (move-rover {:x 0 :y 0 :heading "S"} "R") => {:x 0 :y 0 :heading "E"})
   (fact "East"
-        (move-rover {:x 0 :y 0 :heading "E"} "R") => {:x 0 :y 0 :heading "N"}))
-  
+        (move-rover {:x 0 :y 0 :heading "E"} "R") => {:x 0 :y 0 :heading "N"})
+  (fact "East with double rotation"
+        (move-rover {:x 0 :y 0 :heading "S"} "RR") => {:x 0 :y 0 :heading "N"}))
 
 (facts
   "Allow Mars Rover to "
