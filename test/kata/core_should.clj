@@ -12,6 +12,7 @@
         (move-rover {:x 0 :y 0 :heading "S"} "L") => {:x 0 :y 0 :heading "W"})
   (fact "East"
         (move-rover {:x 0 :y 0 :heading "E"} "L") => {:x 0 :y 0 :heading "S"}))
+
 (facts
   "Allow Mars Rover to rotate to right from"
   (fact "North"
@@ -24,6 +25,15 @@
         (move-rover {:x 0 :y 0 :heading "E"} "R") => {:x 0 :y 0 :heading "N"})
   (fact "East with double rotation"
         (move-rover {:x 0 :y 0 :heading "S"} "RR") => {:x 0 :y 0 :heading "N"}))
+
+(facts
+  "Allow Mars Rover to rotate on itself"
+  (fact "same direction"
+        (move-rover {:x 0 :y 0 :heading "S"} "RR") => {:x 0 :y 0 :heading "N"})
+  (fact "with different directions"
+        (move-rover {:x 0 :y 0 :heading "N"} "RRLRLRL") => {:x 0 :y 0 :heading "W"})
+  (fact "returning to initial position"
+        (move-rover {:x 0 :y 0 :heading "S"} "RL") => {:x 0 :y 0 :heading "S"}))
 
 (facts
   "Allow Mars Rover to "
