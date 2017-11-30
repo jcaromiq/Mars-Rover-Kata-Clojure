@@ -1,9 +1,9 @@
 (ns kata.core)
 
-(def compass {:N {:L "W" :R "E"}
-              :W {:L "S" :R "N"}
-              :E {:L "N" :R "S"}
-              :S {:L "W" :R "E"}})
+(def compass {:N {:R "W" :L "E"}
+              :W {:R "S" :L "N"}
+              :E {:R "N" :L "S"}
+              :S {:R "E" :L "W"}})
 
 (defn- get-head
   [head to]
