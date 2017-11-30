@@ -7,6 +7,9 @@
   (fact "Left from North"
     (move-rover {:x 0 :y 0 :heading "N"} "L") => {:x 0 :y 0 :heading "W"})
 
+  (fact "Left from West"
+        (move-rover {:x 0 :y 0 :heading "W"} "L") => {:x 0 :y 0 :heading "S"})
+
   )
 
 (facts
