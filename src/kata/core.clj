@@ -11,6 +11,18 @@
     head
     ((keyword to) ((keyword head) compass))))
 
+(defn- move
+  [rover to]
+  (if (and (="F" to) (= "N" (:heading rover)))
+    (assoc rover :y (+ (:y rover) 1))))
+
+(defn- execute-command
+  [{x :x y :y head :heading :as rover}  command]
+  (if (clojure.string/includes? "RL" command)
+     (assoc rover :heading (orientate head command))
+     (move rover command)
+     ))
+
 (defn move-rover
-  [{x :x y :y head :heading :as position}  commands]
-  (assoc position :heading (reduce orientate head (map str commands))))
+  [position  commands]
+  (reduce execute-command position (map str commands)))
