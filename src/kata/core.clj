@@ -1,15 +1,16 @@
 (ns kata.core)
-
+; Añadir la lista unicamente de puntos cardinales e ir rotandolas
 (def compass {:N {:R "W" :L "E"}
-              :W {:R "S" :L "N"}
               :E {:R "N" :L "S"}
-              :S {:R "E" :L "W"}})
+              :S {:R "E" :L "W"}
+              :W {:R "S" :L "N"}})
 
-(defn- get-head
+(defn- orientate
   [head to]
   (if (clojure.string/blank? to)
     head
     ((keyword to) ((keyword head) compass))))
 
-(defn move-rover [{x :x y :y current-head :heading} commands]
-  {:x x :y y :heading (reduce get-head current-head (map str commands))})
+(defn move-rover
+  [{x :x y :y head :heading} commands]
+  {:x x :y y :heading (reduce orientate head (map str commands))})

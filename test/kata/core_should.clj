@@ -37,8 +37,8 @@
 
 (facts
   "Allow Mars Rover to "
-  (fact "Stays in the same position if no commands getting"
+  (fact "Stay in the same position if no commands getting"
         (move-rover {:x 0 :y 0 :heading "N"} "") => {:x 0 :y 0 :heading "N"})
-  ;(fact "move Forward"
-  ;  (move-rover {:x 0 :y 0 :heading "N"} "F") => {:x 0 :y 1 :heading "N"})
-  )
+;  (fact "move Forward"
+;    (move-rover {:x 0 :y 0 :heading "N"} "F") => {:x 0 :y 1 :heading "N"})
+)
