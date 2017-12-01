@@ -55,5 +55,7 @@
         (move-rover {:x 4 :y 4 :heading "S"} "B") => {:x 4 :y 5 :heading "S"})
   (fact "move BackForward to West"
         (move-rover {:x 4 :y 4 :heading "W"} "B") => {:x 5 :y 4 :heading "W"})
+  (fact "move BackForward to West"
+        (move-rover {:x 4 :y 4 :heading "N"} "RFLFLFFBLFFRRRF") => {:x 3 :y 3 :heading "W"})
 
 )
