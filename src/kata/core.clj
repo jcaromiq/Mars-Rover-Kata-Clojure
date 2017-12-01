@@ -12,5 +12,5 @@
     ((keyword to) ((keyword head) compass))))
 
 (defn move-rover
-  [{x :x y :y head :heading} commands]
-  {:x x :y y :heading (reduce orientate head (map str commands))})
+  [{x :x y :y head :heading :as position}  commands]
+  (assoc position :heading (reduce orientate head (map str commands))))
