@@ -15,10 +15,9 @@
            :S {:y 1 :x 0}}})
 
 (defn- orientate
-  [head to]
-  (if (clojure.string/blank? to)
-    head
-    ((keyword to) ((keyword head) compass))))
+  [{head :heading :as rover}  to]
+    (let [to-heading ((keyword to) ((keyword head) compass))]
+    (assoc rover :heading to-heading)))
 
 (defn- move
   [{x :x y :y head :heading :as rover}  to]
@@ -26,14 +25,12 @@
         to-y (:y ((keyword head) ((keyword to) gps)))]
     (assoc rover :y (+ to-y y) :x (+ to-x x))))
 
-
-(defn- execute-command
-  [{x :x y :y head :heading :as rover}  command]
-  (if (clojure.string/includes? "RL" command)
-     (assoc rover :heading (orientate head command))
-     (move rover command)
-     ))
+(defn- place
+  [rover to]
+  (if (clojure.string/includes? "RL" to)
+    (orientate rover to)
+    (move rover to)))
 
 (defn move-rover
-  [position  commands]
-  (reduce execute-command position (map str commands)))
+  [rover commands]
+  (reduce place rover (map str commands)))
