@@ -43,4 +43,17 @@
     (move-rover {:x 0 :y 0 :heading "N"} "F") => {:x 0 :y 1 :heading "N"})
   (fact "move Forward to East"
         (move-rover {:x 0 :y 0 :heading "E"} "F") => {:x 1 :y 0 :heading "E"})
+  (fact "move Forward to South"
+        (move-rover {:x 0 :y 4 :heading "S"} "F") => {:x 0 :y 3 :heading "S"})
+  (fact "move Forward to West"
+        (move-rover {:x 1 :y 0 :heading "W"} "F") => {:x 0 :y 0 :heading "W"})
+  (fact "move BackForward to North"
+        (move-rover {:x 4 :y 4 :heading "N"} "B") => {:x 4 :y 3 :heading "N"})
+  (fact "move BackForward to East"
+        (move-rover {:x 4 :y 4 :heading "E"} "B") => {:x 3 :y 4 :heading "E"})
+  (fact "move BackForward to South"
+        (move-rover {:x 4 :y 4 :heading "S"} "B") => {:x 4 :y 5 :heading "S"})
+  (fact "move BackForward to West"
+        (move-rover {:x 4 :y 4 :heading "W"} "B") => {:x 5 :y 4 :heading "W"})
+
 )
