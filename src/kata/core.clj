@@ -5,6 +5,7 @@
               :S {:R "E" :L "W"}
               :W {:R "S" :L "N"}})
 
+
 (defn- orientate
   [head to]
   (if (clojure.string/blank? to)
@@ -13,8 +14,10 @@
 
 (defn- move
   [rover to]
-  (if (and (="F" to) (= "N" (:heading rover)))
-    (assoc rover :y (+ (:y rover) 1))))
+  (cond
+    (and (="F" to) (= "N" (:heading rover))) (assoc rover :y (+ (:y rover) 1))
+    (and (="F" to) (= "E" (:heading rover))) (assoc rover :x (+ (:x rover) 1))
+    ))
 
 (defn- execute-command
   [{x :x y :y head :heading :as rover}  command]
