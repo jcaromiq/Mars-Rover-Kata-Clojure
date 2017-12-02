@@ -36,8 +36,8 @@
         (move-rover {:x 0 :y 0 :heading "S"} "RL") => {:x 0 :y 0 :heading "S"}))
 
 (facts
-  "Allow Mars Rover to "
-  (fact "Stay in the same position if no commands getting"
+  "Allow Mars Rover to"
+  (fact "stay in the same position if no commands getting"
         (move-rover {:x 0 :y 0 :heading "N"} "") => {:x 0 :y 0 :heading "N"})
   (fact "move Forward to North"
     (move-rover {:x 0 :y 0 :heading "N"} "F") => {:x 0 :y 1 :heading "N"})

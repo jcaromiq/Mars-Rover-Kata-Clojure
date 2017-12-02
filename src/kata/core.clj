@@ -1,5 +1,5 @@
 (ns kata.core)
-(alias 's 'clojure.string)
+(alias 'string 'clojure.string)
 
 (def compass {:N {:R "W" :L "E"}
               :E {:R "N" :L "S"}
@@ -22,14 +22,14 @@
     (assoc rover :heading to-heading)))
 
 (defn- move
-  [{x :x y :y head :heading :as rover}  to]
-  (let [move-x-from (:x ((keyword head) ((keyword to) gps)))
-        move-y-from (:y ((keyword head) ((keyword to) gps)))]
-    (assoc rover :y (move-y-from y) :x (move-x-from x))))
+  [{rover-x :x rover-y :y rover-head :heading :as rover}  to]
+  (let [move-x-from (:x ((keyword rover-head) ((keyword to) gps)))
+        move-y-from (:y ((keyword rover-head) ((keyword to) gps)))]
+    (assoc rover :x (move-x-from rover-x) :y (move-y-from rover-y))))
 
 (defn- place
   [rover to]
-  (if (s/includes? "RL" to)
+  (if (string/includes? "RL" to)
     (orientate rover to)
     (move rover to)))
 
