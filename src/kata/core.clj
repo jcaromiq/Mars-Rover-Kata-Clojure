@@ -1,6 +1,8 @@
 (ns kata.core)
 (alias 'string 'clojure.string)
 
+(def world-size {:x 20 :y 20})
+
 (def compass {:N {:L "E" :R "W"}
               :E {:L "S" :R "N" }
               :S {:L "W" :R "E" }
@@ -25,7 +27,8 @@
   [{rover-x :x rover-y :y rover-head :heading :as rover}  to]
   (let [move-x-from (:x ((comp (keyword rover-head) (keyword to)) gps))
         move-y-from (:y ((comp (keyword rover-head) (keyword to)) gps))]
-    (assoc rover :x (move-x-from rover-x) :y (move-y-from rover-y))))
+    (assoc rover :x (mod (move-x-from rover-x) (:x world-size))
+                 :y (mod (move-y-from rover-y) (:y world-size)))))
 
 (defn- valid-rotate?
   [to]

@@ -59,6 +59,9 @@
         (move-rover {:x 4 :y 4 :heading "N"} "RFLFLFFBLFFRRRF") => {:x 3 :y 3 :heading "W"})
   (fact "ignore unsupported commands"
         (move-rover {:x 4 :y 4 :heading "W"} "QWE") => {:x 4 :y 4 :heading "W"})
+  (fact "wrapping from one edge of the grid to another"
+        (move-rover {:x 19 :y 0 :heading "E"} "F") => {:x 0 :y 0 :heading "E"}
+        (move-rover {:x 0 :y 19 :heading "N"} "F") => {:x 0 :y 0 :heading "N"})
 
 
-)
+  )
