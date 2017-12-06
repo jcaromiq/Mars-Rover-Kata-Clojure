@@ -25,10 +25,10 @@
 
 (defn- move
   [{rover-x :x rover-y :y rover-head :heading :as rover}  to]
-  (let [move-x-from (:x ((comp (keyword rover-head) (keyword to)) gps))
-        move-y-from (:y ((comp (keyword rover-head) (keyword to)) gps))]
-    (assoc rover :x (mod (move-x-from rover-x) (:x world-size))
-                 :y (mod (move-y-from rover-y) (:y world-size)))))
+  (let [move-horizontally-from (:x ((comp (keyword rover-head) (keyword to)) gps))
+        move-vertically-from (:y ((comp (keyword rover-head) (keyword to)) gps))]
+    (assoc rover :x (mod (move-horizontally-from rover-x) (:x world-size))
+                 :y (mod (move-vertically-from rover-y) (:y world-size)))))
 
 (defn- valid-rotate?
   [to]
