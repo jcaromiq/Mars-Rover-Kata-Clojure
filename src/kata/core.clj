@@ -19,14 +19,14 @@
            :S {:y inc :x identity}}})
 
 (defn- rotate
-  [{head :heading :as rover}  to]
-    (let [to-heading ((comp (keyword to) (keyword head)) compass)]
-    (assoc rover :heading to-heading)))
+  [{direction :d :as rover}  to]
+    (let [to-direction ((comp (keyword to) (keyword direction)) compass)]
+    (assoc rover :d to-direction)))
 
 (defn- move
-  [{rover-x :x rover-y :y rover-head :heading :as rover}  to]
-  (let [move-horizontally-from (:x ((comp (keyword rover-head) (keyword to)) gps))
-        move-vertically-from (:y ((comp (keyword rover-head) (keyword to)) gps))]
+  [{rover-x :x rover-y :y direction :d :as rover}  to]
+  (let [move-horizontally-from (:x ((comp (keyword direction) (keyword to)) gps))
+        move-vertically-from (:y ((comp (keyword direction) (keyword to)) gps))]
     (assoc rover :x (mod (move-horizontally-from rover-x) (:x world-size))
                  :y (mod (move-vertically-from rover-y) (:y world-size)))))
 
