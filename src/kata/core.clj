@@ -8,15 +8,15 @@
               :S {:L "W" :R "E" }
               :W {:L "N" :R "S" }})
 (def gps {:F
-          {:N {:y inc :x identity}
-           :E {:y identity :x inc}
-           :W {:y identity :x dec}
-           :S {:y dec :x identity}}
+          {:N {:x identity :y #(mod (inc %) (:y world-size))}
+           :E {:x #(mod (inc %) (:x world-size)) :y identity }
+           :S {:x identity :y #(mod (dec %) (:y world-size))}
+           :W {:x #(mod (dec %) (:x world-size)) :y identity}}
           :B
-          {:N {:y dec :x identity}
-           :E {:y identity :x dec}
-           :W {:y identity :x inc}
-           :S {:y inc :x identity}}})
+          {:N {:x identity :y #(mod (dec %) (:y world-size))}
+           :E {:x #(mod (dec %) (:x world-size)):y identity}
+           :S {:x identity :y #(mod (inc %) (:y world-size))}
+           :W {:x #(mod (inc %) (:x world-size)) :y identity}}})
 
 (defn- rotate
   [{direction :d :as rover}  to]
@@ -27,8 +27,8 @@
   [{rover-x :x rover-y :y direction :d :as rover}  to]
   (let [move-horizontally-from (:x ((comp (keyword direction) (keyword to)) gps))
         move-vertically-from (:y ((comp (keyword direction) (keyword to)) gps))]
-    (assoc rover :x (mod (move-horizontally-from rover-x) (:x world-size))
-                 :y (mod (move-vertically-from rover-y) (:y world-size)))))
+    (assoc rover :x (move-horizontally-from rover-x)
+                 :y (move-vertically-from rover-y))))
 
 (defn- valid-rotate?
   [to]
