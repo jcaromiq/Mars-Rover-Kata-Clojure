@@ -63,5 +63,4 @@
         (move-rover {:x 19 :y 0 :d "E"} "F") => {:x 0 :y 0 :d "E"}
         (move-rover {:x 0 :y 19 :d "N"} "F") => {:x 0 :y 0 :d "N"})
 
-
   )
